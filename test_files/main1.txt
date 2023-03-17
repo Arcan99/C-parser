@@ -1,0 +1,4 @@
+start
+    set integer x to 5
+    print The value of x is {x}
+end

@@ -1,5 +1,5 @@
 import unittest
-from codegenerator import Converter, Token_index
+from codeconverter import Converter
 
 class test_converter(unittest.TestCase):
     def setUp(self) -> None:
@@ -31,11 +31,42 @@ class test_converter(unittest.TestCase):
 
     def test_match(self):
         self.assertFalse(self.c.match("token1"))
+        
         self.c.setCurrentSentence(["token1", "token2"])
+        
         self.assertTrue(self.c.match("token1"))
         self.assertFalse(self.c.match("token1"))
+        
         self.assertTrue(self.c.match("token2"))
         self.assertFalse(self.c.match("token2"))
         
     def test_start(self):
-        self.assertTrue(False)
+        self.assertIsNone(self.c.start())
+        
+        self.c.setCurrentSentence(["start"])
+        self.assertEqual(self.c.start(), "int main(int argc, char* argv) {")
+        
+    def test_end(self):
+        self.assertIsNone(self.c.end())
+        
+        self.c.setCurrentSentence(["end"])
+        self.assertEqual(self.c.end(), "return 0;\n}")
+        
+        self.c.setCurrentSentence(["end"])
+        self.assertEqual(self.c.end(10), "return 10;\n}")
+        
+    def test_set(self):
+        self.assertIsNone(self.c.set())
+        
+        self.c.setCurrentSentence(["set", "integer", "x", "to", "10"])
+        self.assertEqual(self.c.set(), "int x = 10;")
+        self.assertIsNone(self.c.set())
+        
+        self.c.setCurrentSentence(["set", "integer", "test_var", "to", "100"])
+        self.assertEqual(self.c.set(), "int test_var = 100;")
+        
+        self.c.setCurrentSentence(["set", "int", "test_var", "to", "100"])
+        self.assertIsNone(self.c.set())
+        
+        self.c.setCurrentSentence(["set", "int", "test_var", "to0", "100"])
+        self.assertIsNone(self.c.set())

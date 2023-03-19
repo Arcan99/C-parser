@@ -1,7 +1,7 @@
 # Generate C-code from Easy C
 
-from codeconverter import Converter
-from filereader import File_reader
+from main.codeconverter import Converter
+from main.filereader import File_reader
 
 class Generator:
     
@@ -29,10 +29,9 @@ class Generator:
         self.convertMain()
         
     def saveResult(self, line: str, indent: int):
-        print(indent*"\t" + line)
+        print(indent*"\t" + line)                           # TODO: Remove print statment when no longer needed
         self.result_file.write(indent*"\t" + line + "\n")
         self.currentLine = self.reader.getNewTokens()
-        # TODO: Save to file
     
     ### Main Methods ###
     

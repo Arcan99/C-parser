@@ -1,6 +1,6 @@
 # Converts a series of tokens to a line of C code
 
-from tokenindex import Token_index
+from main.tokenindex import Token_index
 
 class Converter:
     

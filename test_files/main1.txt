@@ -3,5 +3,4 @@ start
     set integer x to 5
     set character c to 'c'
     set String s to "Hello"
-    print The value of x is {x}
 end

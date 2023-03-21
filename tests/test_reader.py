@@ -3,7 +3,7 @@ from main.filereader import File_reader
 
 class test_reader(unittest.TestCase):
     def setUp(self) -> None:
-        self.r = File_reader("test_files/main1.txt")
+        self.r = File_reader("test_files/test_cases/testMain.txt")
         return super().setUp()
     
     def test_readNextLine(self):
@@ -20,13 +20,13 @@ class test_reader(unittest.TestCase):
         self.assertEqual(line, "    set character c to 'c'\n")
         
         line = self.r.readNextLine()
-        self.assertEqual(line, '    set String s to "Hello"\n')
+        self.assertEqual(line, '    set String s to "Hello World"\n')
         
         line = self.r.readNextLine()
         self.assertEqual(line, "end\n")
         
         line = self.r.readNextLine()
-        self.assertEqual(line, None)
+        self.assertIsNone(line)
         
     def test_getNewTokens(self):
         tokens = self.r.getNewTokens()
@@ -39,7 +39,7 @@ class test_reader(unittest.TestCase):
         self.assertListEqual(tokens, ['set', 'character', 'c', 'to', "'c'"])
         
         tokens = self.r.getNewTokens()
-        self.assertListEqual(tokens, ['set', 'String', 's', 'to', '"Hello"'])
+        self.assertListEqual(tokens, ['set', 'String', 's', 'to', '"Hello World"'])
         
         tokens = self.r.getNewTokens()
         self.assertListEqual(tokens, ['end'])

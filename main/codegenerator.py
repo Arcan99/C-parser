@@ -77,7 +77,7 @@ class Generator:
     def convertBody(self):
         #differente types of body
         allowed_words = ["set"]
-        while self.currentLine[0] in allowed_words:
+        while not self.currentLine == [] and self.currentLine[0] in allowed_words:
             self.setConverterSentence()
             result = self.converter.set()
             if result is None:

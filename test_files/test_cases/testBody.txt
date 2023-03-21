@@ -1,0 +1,4 @@
+    set integer x to 5
+    set character c to 'c'
+    set String s to "Hello World" 
+end

@@ -15,22 +15,24 @@ class File_reader:
         return sentence
         
     def getNewTokens(self) -> bool:
+        result = []
         while True:
             input = self.readNextLine()
             if input is None:
                 return None
-            input = input.split()
-            if not input == []:
+            
+            input = input.split('"')
+            for i in range(len(input)):
+                if i % 2:
+                    result.append('"' + input[i] + '"')
+                else:
+                    for item in input[i].split():
+                        result.append(item)  
+            if not result == []:
                 break
-        return input
+        return result
         
     
 
     
 if __name__ == "__main__":
-    reader = File_reader("test_files/main1.txt")
-    tokens = reader.getNewTokens()
-    while tokens is not None:
-        print(tokens)
-        tokens = reader.getNewTokens()
-        

@@ -9,7 +9,7 @@ class Generator:
         self.reader = File_reader(file_path=target_path)
         self.result_file = open(result_path, "w")
         self.converter = Converter()
-        self.currentLine = self.reader.getNewTokens()
+        #self.currentLine = self.reader.getNewTokens()
         
     def __del__(self):
         self.result_file.close()
@@ -18,13 +18,18 @@ class Generator:
     def convertFile(self):
         # wrapper text
         self.generateWrapperText()
+        
         # includes
+        
         # defines
         self.convertDefines()
+        
         # structs
         self.convertUserStruct()
+        
         # functions 
         self.convertFunction()
+        
         # main
         self.convertMain()
         
@@ -41,6 +46,7 @@ class Generator:
     
     def convertDefines(self):
         # User Definitions
+        self.saveResult("#include <stdio.h>\n", 0)
         pass
     
     def convertUserStruct(self):
@@ -87,14 +93,8 @@ class Generator:
     def setConverterSentence(self):
         self.converter.setCurrentSentence(self.currentLine)
     
-    
-    
-            
-            
-        
-        
 
 if __name__ == "__main__":
     
-    g = Generator("test_files/main1.txt", "test_results/main1.c")
+    g = Generator("test_files/test_cases/testMain.txt", "test_files/test_results/convertMain_test.c")
     g.convertFile()

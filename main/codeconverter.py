@@ -1,6 +1,5 @@
 # Converts a series of tokens to a line of C code
-
-from main.tokenindex import Token_index
+from tokenindex import Token_index
 
 class Converter:
     
@@ -61,3 +60,7 @@ class Converter:
         if not self.match(self.getFirstToken()):
             return None
         return result
+    
+    
+if __name__ == "__main__":
+    print("Loded module")

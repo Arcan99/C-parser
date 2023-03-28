@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import _patch
 
 from main.codegenerator import Generator
 
